@@ -45,6 +45,277 @@
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
             --transition: 0.2s ease;
+            --bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ═══ FUN ANIMATIONS ═══ */
+        /* Logo book bounce */
+        .logo-icon {
+            display: inline-block;
+            animation: logoBounce 2s var(--bounce) infinite;
+        }
+
+        @keyframes logoBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-4px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translateY(-2px) rotate(3deg);
+            }
+        }
+
+        /* Stat card pop-in on load */
+        .stat-card {
+            animation: statPop 0.5s var(--bounce) backwards;
+        }
+
+        .stat-card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: 0.12s;
+        }
+
+        .stat-card:nth-child(3) {
+            animation-delay: 0.19s;
+        }
+
+        .stat-card:nth-child(4) {
+            animation-delay: 0.26s;
+        }
+
+        .stat-card:nth-child(5) {
+            animation-delay: 0.33s;
+        }
+
+        @keyframes statPop {
+            from {
+                opacity: 0;
+                transform: scale(0.85) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Book card hover glow enhancement */
+        .book-card {
+            animation: cardEnter 0.4s ease forwards;
+            transition: transform 0.25s var(--bounce), box-shadow 0.3s ease, border-color var(--transition);
+        }
+
+        .book-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            box-shadow: inset 0 1px 0 rgba(212, 160, 83, 0.08);
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 160, 83, 0.15);
+            border-color: rgba(212, 160, 83, 0.25);
+        }
+
+        .book-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Star wiggle on hover (rating display stars) */
+        .star-rating .star.filled {
+            display: inline-block;
+        }
+
+        .star-rating:hover .star.filled {
+            animation: starWiggle 0.4s var(--bounce);
+        }
+
+        .star-rating .star.filled:nth-child(2) {
+            animation-delay: 0.03s;
+        }
+
+        .star-rating .star.filled:nth-child(3) {
+            animation-delay: 0.06s;
+        }
+
+        .star-rating .star.filled:nth-child(4) {
+            animation-delay: 0.09s;
+        }
+
+        .star-rating .star.filled:nth-child(5) {
+            animation-delay: 0.12s;
+        }
+
+        @keyframes starWiggle {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            25% {
+                transform: scale(1.2) rotate(-8deg);
+            }
+
+            50% {
+                transform: scale(1.25) rotate(8deg);
+            }
+
+            75% {
+                transform: scale(1.15) rotate(-4deg);
+            }
+        }
+
+        /* Genre tag wiggle on card hover */
+        .book-card:hover .genre-tag {
+            animation: tagWiggle 0.5s var(--bounce);
+        }
+
+        @keyframes tagWiggle {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-3px);
+            }
+
+            40% {
+                transform: translateX(3px);
+            }
+
+            60% {
+                transform: translateX(-2px);
+            }
+
+            80% {
+                transform: translateX(2px);
+            }
+        }
+
+        /* Empty state floating */
+        .empty-state .empty-icon {
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Toast slide + bounce */
+        .toast.show {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .toast {
+            transition: transform 0.4s var(--bounce), opacity 0.25s ease;
+        }
+
+        /* Scroll-to-top pulse */
+        .scroll-top-btn.visible:hover {
+            animation: pulseGlow 1s ease infinite;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: var(--shadow);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(212, 160, 83, 0.3), var(--shadow);
+            }
+        }
+
+        /* Button click squish effect */
+        .btn:active:not(:disabled) {
+            transform: scale(0.95) !important;
+        }
+
+        .btn-primary:active:not(:disabled) {
+            transform: scale(0.95) !important;
+        }
+
+        /* Confirm dialog entrance */
+        .confirm-overlay.active .confirm-dialog {
+            animation: confirmBounce 0.35s var(--bounce);
+        }
+
+        @keyframes confirmBounce {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Detail modal star entrance */
+        .detail-cover img {
+            animation: fadeZoom 0.5s ease;
+        }
+
+        @keyframes fadeZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ═══ BUTTON HOVER SHIMMER ═══ */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::after {
+            left: 150%;
         }
 
         body {
@@ -1429,10 +1700,81 @@
             const author = document.getElementById('bookAuthor').value.trim();
             if (!title) { showToast('Please enter a book title.', 'error'); return; }
             const editId = document.getElementById('editBookId').value;
+            const isNew = !editId;
             const bookData = { title, author: author || 'Unknown', genre: document.getElementById('bookGenre').value.trim() || 'Uncategorized', status: document.getElementById('bookStatus').value, dateRead: document.getElementById('bookDateRead').value || '', pages: parseInt(document.getElementById('bookPages').value) || 0, cover: document.getElementById('bookCover').value.trim(), rating: selectedRating, review: document.getElementById('bookReview').value.trim() };
             if (editId) { const idx = books.findIndex(b => b.id === editId); if (idx !== -1) { books[idx] = { ...books[idx], ...bookData }; } } else { books.push({ id: genId(), ...bookData, dateAdded: new Date().toISOString() }); }
             persist(); closeModal('addModal'); renderBooks(); showToast(editId ? 'Book updated!' : 'Book added!'); resetForm();
+            if (isNew && selectedRating >= 4) {
+                triggerConfetti(selectedRating);
+            }
         }
+
+        /* ═══ CONFETTI CELEBRATION ═══ */
+        function triggerConfetti(rating) {
+            const count = Math.min(rating * 12, 60);
+            const colors = ['#d4a053', '#4caf7d', '#5b9bd5', '#c47a9a', '#e0b46e', '#ff6b6b', '#ffd93d', '#6bcb77'];
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                const size = 6 + Math.random() * 8;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const startX = window.innerWidth / 2 + (Math.random() - 0.5) * 200;
+                const startY = window.innerHeight / 2;
+                const endX = (Math.random() - 0.5) * window.innerWidth * 1.2;
+                const endY = window.innerHeight * (0.3 + Math.random() * 0.5);
+                const rotation = Math.random() * 720 - 360;
+                const duration = 1200 + Math.random() * 1200;
+                const shape = Math.random() > 0.5 ? '50%' : '2px';
+                confetti.style.cssText = `
+                    position: fixed; z-index: 9999; pointer-events: none;
+                    width: ${size}px; height: ${size}px;
+                    background: ${color}; border-radius: ${shape};
+                    left: ${startX}px; top: ${startY}px;
+                    opacity: 1;
+                    transform: translate(0, 0) rotate(0deg) scale(1);
+                    transition: none;
+                `;
+                document.body.appendChild(confetti);
+                requestAnimationFrame(() => {
+                    confetti.style.transition = `transform ${duration}ms cubic-bezier(0.25, 0.1, 0.4, 1), opacity ${duration * 0.7}ms ease`;
+                    confetti.style.transform = `translate(${endX}px, ${endY}px) rotate(${rotation}deg) scale(0.3)`;
+                    confetti.style.opacity = '0';
+                });
+                setTimeout(() => confetti.remove(), duration + 100);
+            }
+        }
+
+        /* ═══ BUTTON RIPPLE ═══ */
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn');
+            if (!btn || btn.disabled) return;
+            const rect = btn.getBoundingClientRect();
+            const ripple = document.createElement('span');
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            ripple.style.cssText = `
+                position: absolute; border-radius: 50%;
+                width: ${size}px; height: ${size}px;
+                left: ${x}px; top: ${y}px;
+                background: rgba(255,255,255,0.2);
+                transform: scale(0);
+                animation: rippleAnim 0.55s ease-out forwards;
+                pointer-events: none;
+            `;
+            if (getComputedStyle(btn).position === 'static') btn.style.position = 'relative';
+            btn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+
+        /* Inject ripple keyframe if not present */
+        (function ensureRippleKeyframe() {
+            if (!document.getElementById('rippleStyle')) {
+                const style = document.createElement('style');
+                style.id = 'rippleStyle';
+                style.textContent = `@keyframes rippleAnim { to { transform: scale(2.5); opacity: 0; } }`;
+                document.head.appendChild(style);
+            }
+        })();
 
         function resetForm() {
             document.getElementById('editBookId').value = ''; document.getElementById('bookTitle').value = ''; document.getElementById('bookAuthor').value = '';
