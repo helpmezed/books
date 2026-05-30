@@ -1,0 +1,7 @@
+# Local Agent Rules
+
+## Git & GitHub Workflow
+**CRITICAL RULE FOR ALL AI ASSISTANTS:**
+Whenever you modify, add, or delete any files in this project, you MUST automatically commit your changes and push them to GitHub (`origin master` or the current branch) as the final step of your task. 
+
+Do not ask the user for permission to push to GitHub—just bundle your changes into a commit with a descriptive message and push them automatically before you finish your response.
