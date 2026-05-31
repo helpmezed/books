@@ -1,45 +1,36 @@
-# BookShelf — My Reading Journal
+# BookShelf
 
-## What This Is
-A personal book review and reading tracker web application. It's a single self-contained HTML file (`index.html`) with no external dependencies, frameworks, or build tools required. Open it directly in any modern browser.
+A beautiful, local-first web application for tracking your reading journey. Built with a warm, elegant dark mode design system and smooth micro-animations.
 
-## What It Does
-- **Track books you've read, are reading, or want to read** with title, author, genre, status, date read, page count, star rating (1–5), and free-form review/notes.
-- **Automatically finds book cover art** using the Open Library API (free, no API key). When you type a title, it auto-searches after a brief pause and shows matching cover thumbnails to pick from.
-- **Dashboard stats** show total books tracked, books read, currently reading, average rating, and total pages read — with animated count-up on load.
-- **Search** across titles, authors, and genres in real time.
-- **Filter** by genre, reading status, and **sort** by date added, rating, title, or date read.
-- **Detail view** — click any book card to see full details with cover and review.
-- **Edit and delete** books from the detail view or card actions (with styled confirmation dialog).
-- **Export / Import** your entire library as JSON for backup and portability.
-- **Keyboard shortcut** — press `Ctrl+N` (or `Cmd+N` on Mac) to quickly add a new book.
+## Features
+- **Local-First**: All your data stays on your device (in `localStorage`). Fast, private, and no signup required.
+- **Smart Covers**: Auto-fetches high-quality book covers via the Open Library API.
+- **Libraries**: Organize books into custom libraries (e.g., "Fiction", "Non-Fiction", "Reference").
+- **Insights**: Track how many books you've read, your average rating, and total pages read.
+- **Search & Filter**: Find books instantly. Sort by newest, highest rated, alphabetical, or recently read.
+- **Data Portability**: Export your entire collection as JSON and import it on any other device.
+- **Beautiful UI**: Built with a sleek amber/gold dark mode palette and fluid interactions.
 
-## Design
-- Premium dark theme with glassmorphism header
-- Typography: Inter (body) + Playfair Display (headings) via Google Fonts
-- Animated card entrance with staggered fade-in
-- Smooth modal open/close transitions
-- Cover image skeleton loading shimmer
-- Scroll-to-top floating button
-- Responsive design (mobile, tablet, desktop)
-- Accessibility: ARIA labels, keyboard navigation, `prefers-reduced-motion` support
+## Tech Stack
+- **Framework**: React 19 + Vite
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **UI Components**: shadcn/ui + Radix UI
+- **Icons**: Lucide React
+- **Data Persistence**: `localStorage` (No backend required)
 
-## Tech Details
-- **Single file**: `book list/index.html` (~2200 lines)
-- **Frontend only**: HTML + CSS + vanilla JavaScript (no build step, no npm, no frameworks)
-- **Data storage**: `localStorage` — all data persists in the browser. No backend or database.
-- **Cover art API**: [Open Library Search API](https://openlibrary.org/developers/api) — searches by title/author, falls back to ISBN-based cover lookup.
-- **Desktop shortcut**: `BookShelf.lnk` on the Desktop points to the `index.html` file.
+## Running Locally
 
-## File Structure
-```
-book list/
-  index.html    ← The entire application (HTML + CSS + JS)
-  README.md     ← This file
-```
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open `http://localhost:5173` in your browser.
 
-## How to Run
-Just open `index.html` in a browser. No server needed.
+## Deployment
 
-## How to Modify
-Edit `index.html` directly. All CSS is in `<style>` tags at the top, all JavaScript is in `<script>` tags at the bottom. The app uses a simple array of book objects stored in localStorage — see the `books` variable and the `persist()` function to understand the data model.
+This app is fully optimized for **Vercel**. Deploying is as simple as connecting your GitHub repository to Vercel. The build command (`npm run build`) and output directory (`dist`) will be automatically detected.
