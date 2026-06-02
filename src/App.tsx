@@ -64,7 +64,7 @@ export default function App() {
     const query = searchQuery.toLowerCase().trim()
     const [sortKey, sortDir] = sortBy.split("-") as [SortKey, SortDir]
 
-    let result = scopeBooks.filter((b) => {
+    const result = scopeBooks.filter((b) => {
       const matchQuery =
         !query ||
         b.title.toLowerCase().includes(query) ||
@@ -78,7 +78,7 @@ export default function App() {
     })
 
     result.sort((a, b) => {
-      let valA: any, valB: any
+      let valA: string | number, valB: string | number
       switch (sortKey) {
         case "title":
           valA = a.title.toLowerCase()
@@ -101,7 +101,10 @@ export default function App() {
         default:
           return 0
       }
-      return sortDir === "asc" ? valA - valB : valB - valA
+      if (typeof valA === "string" && typeof valB === "string") {
+        return sortDir === "asc" ? valA.localeCompare(valB) : valB.localeCompare(valA)
+      }
+      return sortDir === "asc" ? (valA as number) - (valB as number) : (valB as number) - (valA as number)
     })
 
     return result
